@@ -39,6 +39,14 @@
             </form>
 
             {% if currentPeer %}
+                <nav class="mt-3">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="{{ jumpTo.previousDay }}">&laquo; Previous day</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ jumpTo.today }}">Today</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ jumpTo.nextDay }}">Next day &raquo;</a></li>
+                    </ul>
+                </nav>
+
                 {% if entries %}
                     <table class="table table-striped">
                         <thead>
@@ -59,6 +67,14 @@
                             {% endfor %}
                         </tbody>
                     </table>
+
+                    <nav class="mt-3">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item"><a class="page-link" href="{{ jumpTo.previousDay }}">&laquo; Previous day</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ jumpTo.today }}">Today</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ jumpTo.nextDay }}">Next day &raquo;</a></li>
+                        </ul>
+                    </nav>
                 {% else %}
                     <div class="alert alert-warning">No entries available for the specified time range.</div>
                 {% endif %}
