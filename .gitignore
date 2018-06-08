@@ -1,0 +1,4 @@
+/.idea/
+/.vagrant/
+/src/main/resources/config.ini
+/vendor/

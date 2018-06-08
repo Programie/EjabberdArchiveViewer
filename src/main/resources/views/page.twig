@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ejabberd Archive Viewer</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
+
+        <style type="text/css">
+            .no-wrap {
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1 class="page-header">ejabberd Archive Viewer</h1>
+
+            <form class="mb-3">
+                <select name="peer" class="custom-select mb-3">
+                    {% for peer in peers %}
+                        <option value="{{ peer }}" {% if currentPeer == peer %}selected{% endif %}>{{ peer }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="form-row mb-3">
+                    <div class="form-group col-md-6">
+                        <label for="start-time">Start time</label>
+                        <input type="datetime-local" class="form-control mr-2" value="{{ start.format("Y-m-d\\TH:i") }}" name="start" id="start-time"/>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="end-time">End time</label>
+                        <input type="datetime-local" class="form-control mr-2" value="{{ end.format("Y-m-d\\TH:i") }}" name="end" id="end-time"/>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">OK</button>
+            </form>
+
+            {% if currentPeer %}
+                {% if entries %}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>User</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for entry in entries %}
+                                <tr>
+                                    <td class="no-wrap">{{ entry.date.format("r") }}</td>
+                                    <td class="no-wrap">{{ entry.from }}</td>
+                                    <td>{{ entry.txt|raw }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="alert alert-warning">No entries available for the specified time range.</div>
+                {% endif %}
+            {% else %}
+                <div class="alert alert-warning">Please select a peer.</div>
+            {% endif %}
+        </div>
+    </body>
+</html>
