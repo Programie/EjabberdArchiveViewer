@@ -9,6 +9,22 @@
             .no-wrap {
                 white-space: nowrap;
             }
+
+            .entry:target td {
+                animation: highlight 3s ease;
+            }
+
+            @keyframes highlight {
+                0% {
+                    background-color: unset;
+                }
+                50% {
+                    background-color: lightyellow;
+                }
+                100% {
+                    background-color: unset;
+                }
+            }
         </style>
     </head>
 
@@ -36,6 +52,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">OK</button>
+                <a href="search?peer={{ currentPeer }}" class="btn btn-secondary">Open search</a>
             </form>
 
             {% if currentPeer %}
@@ -59,7 +76,7 @@
 
                         <tbody>
                             {% for entry in entries %}
-                                <tr>
+                                <tr class="entry" id="message_{{ entry.id }}">
                                     <td class="no-wrap">{{ entry.date.format("r") }}</td>
                                     <td class="no-wrap">{{ entry.from }}</td>
                                     <td>{{ entry.txt|raw }}</td>

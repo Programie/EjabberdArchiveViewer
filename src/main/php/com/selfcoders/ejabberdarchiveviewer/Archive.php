@@ -51,4 +51,32 @@ class Archive
 
         return $entries;
     }
+
+    /**
+     * @param string $peer
+     * @param string $search
+     * @return Entry[]
+     */
+    public static function findEntriesForPeer(string $peer, string $search)
+    {
+        $query = Database::getPdo()->prepare("
+            SELECT *
+            FROM `archive`
+            WHERE `bare_peer` = :peer AND INSTR(`txt`, :txt) > 0
+            ORDER BY `timestamp` ASC
+        ");
+
+        $query->bindValue(":peer", $peer);
+        $query->bindValue(":txt", $search);
+
+        $query->execute();
+
+        $entries = array();
+
+        while ($entry = $query->fetchObject(Entry::class)) {
+            $entries[] = $entry;
+        }
+
+        return $entries;
+    }
 }

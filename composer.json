@@ -3,7 +3,8 @@
     "description": "A simple frontend for viewing ejabberd archive entries",
     "require": {
         "twig/twig": "^2.4",
-        "programie/pini": "^1.3"
+        "programie/pini": "^1.3",
+        "altorouter/altorouter": "^1.2"
     },
     "license": "MIT",
     "authors": [
