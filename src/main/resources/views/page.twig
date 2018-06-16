@@ -79,7 +79,7 @@
                                 <tr class="entry" id="message_{{ entry.id }}">
                                     <td class="no-wrap">{{ entry.date.format("r") }}</td>
                                     <td class="no-wrap">{{ entry.from }}</td>
-                                    <td>{{ entry.txt|raw }}</td>
+                                    <td>{{ entry.formatText|raw }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

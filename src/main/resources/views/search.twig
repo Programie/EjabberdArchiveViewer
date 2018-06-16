@@ -47,7 +47,7 @@
                                 <tr>
                                     <td class="no-wrap">{{ entry.date.format("r") }}</td>
                                     <td class="no-wrap">{{ entry.from }}</td>
-                                    <td>{{ entry.txt|raw }}</td>
+                                    <td>{{ entry.formatText|raw }}</td>
                                     <td><a href="./?peer={{ currentPeer }}&start={{ entry.date.format("Y-m-d") }}T00:00:00&end={{ entry.date.format("Y-m-d") }}T23:59:59#message_{{ entry.id }}">Show conversation</a></td>
                                 </tr>
                             {% endfor %}
