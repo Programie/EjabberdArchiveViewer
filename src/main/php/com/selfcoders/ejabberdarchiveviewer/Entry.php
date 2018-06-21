@@ -91,7 +91,7 @@ class Entry
 
         $allPattern = array
         (
-            array("@(^|\s)(http|https|ftp)://([^ ]+).(bmp|gif|jpg|png)@", '<a href="$2://$3.$4" target="_blank"><img src="$2://$3.$4" width="200"/></a>'),
+            array("@(^|\s)(http|https|ftp)://([^ ]+).(bmp|gif|jpg|png)@", '<a href="$2://$3.$4" target="_blank"><img src="$2://$3.$4" class="img"/></a>'),
             array("@(^|\s)(http|https|ftp)://([^ ]+)@", '<a href="$2://$3" target="_blank">$2://$3</a>'),
             array("@\n@", "<br/>\n")
         );
