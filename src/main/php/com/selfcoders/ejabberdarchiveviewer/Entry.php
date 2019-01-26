@@ -71,7 +71,7 @@ class Entry
 
         $dom = new DOMDocument;
 
-        $dom->loadXML(utf8_encode($this->xml));
+        $dom->loadXML($this->xml);
 
         $messageElement = $dom->getElementsByTagName("message")->item(0);
         if ($messageElement !== null) {
