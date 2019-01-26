@@ -1,5 +1,4 @@
 $packages = [
-  "apt-transport-https",
   "ca-certificates",
   "git",
   "htop",
@@ -16,7 +15,7 @@ apt::source { "packages.sury.org_php":
     id     => "DF3D585DB8F0EB658690A554AC0E47584A7A714D",
     source => "https://packages.sury.org/php/apt.gpg",
   },
-  require  => Package["apt-transport-https", "ca-certificates"],
+  require  => Package["ca-certificates"],
 }
 
 apt::pin { "packages.sury.org_php":
