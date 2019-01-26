@@ -19,6 +19,8 @@ class Database
             self::$pdo = new PDO(Config::getValue("database", "dsn"), Config::getValue("database", "username"), Config::getValue("database", "password"));
 
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            self::$pdo->exec("SET NAMES utf8mb4");
         }
 
         return self::$pdo;
