@@ -1,5 +1,8 @@
 # Ejabberd Archive Viewer
 
+[![DockerHub](https://img.shields.io/badge/download-DockerHub-blue?logo=docker)](https://hub.docker.com/r/programie/ejabberdarchiveviewer)
+[![GitHub release](https://img.shields.io/github/v/release/Programie/EjabberdArchiveViewer)](https://github.com/Programie/EjabberdArchiveViewer/releases/latest)
+
 ## Configuration
 
 * Point your web server to the httpdocs directory.
