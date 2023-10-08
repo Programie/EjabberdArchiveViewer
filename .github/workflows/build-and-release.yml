@@ -20,3 +20,4 @@ jobs:
       image: programie/ejabberdarchiveviewer
       path: /app
       zip_name: EjabberdArchiveViewer
+    secrets: inherit
