@@ -3,10 +3,36 @@
 [![DockerHub](https://img.shields.io/badge/download-DockerHub-blue?logo=docker)](https://hub.docker.com/r/programie/ejabberdarchiveviewer)
 [![GitHub release](https://img.shields.io/github/v/release/Programie/EjabberdArchiveViewer)](https://github.com/Programie/EjabberdArchiveViewer/releases/latest)
 
-## Configuration
+## Installation and configuration
 
-* Point your web server to the httpdocs directory.
-* Copy [src/main/resources/config.sample.ini](src/main/resources/config.sample.ini) to src/main/resources/config.ini and modify it to fit your environment.
+### Classic installation
+
+**Note:** The application requires a webserver with PHP configured.
+
+* Download the latest release and extract it onto your webserver
+* Point your web server to the `httpdocs` directory
+* Copy [src/main/resources/config.sample.ini](src/main/resources/config.sample.ini) to `src/main/resources/config.ini` and modify it to fit your environment
+
+### Installation with Docker
+
+Create a `config.ini` and configure your database connection.
+
+Example:
+
+```ini
+[database]
+dsn = mysql:host=localhost;dbname=ejabberd
+username = root
+password =
+```
+
+Start the container and mount the `config.ini` into the container at `/app/src/main/resources/config.ini`:
+
+```
+docker run --name ejabberdarchiveviewer -p 8080:80 -v /path/to/config.ini:/app/src/main/resources/config.ini:ro programie/ejabberdarchiveviewer
+```
+
+Now the application will be reachable at http://localhost:8080.
 
 ## Testing in Vagrant VM
 
