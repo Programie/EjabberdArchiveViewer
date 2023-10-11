@@ -1,23 +1,19 @@
 FROM composer AS builder
 
-COPY ./httpdocs /app/httpdocs/
-COPY ./src /app/src/
-COPY ./bootstrap.php /app/
-COPY ./composer.* /app/
-
 WORKDIR /app
+
+COPY ./composer.* /app/
 RUN composer install --no-dev --ignore-platform-reqs
 
 
-FROM php:apache
+FROM ghcr.io/programie/dockerimages/php
 
-ENV APACHE_DOCUMENT_ROOT /app/httpdocs
+ENV WEB_ROOT /app/httpdocs
 
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf && \
-    sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN install-php 8.2 pdo-mysql && \
+    a2enmod rewrite
 
-RUN a2enmod rewrite
-
-RUN docker-php-ext-install pdo_mysql
-
-COPY --from=builder /app /app
+COPY --from=builder /app/vendor /app/vendor/
+COPY ./httpdocs /app/httpdocs/
+COPY ./src /app/src/
+COPY ./bootstrap.php /app/
